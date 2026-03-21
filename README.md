@@ -7,6 +7,7 @@
 - **City Search Interface**
 - **Real-Time Data Extraction**
 - **Time Zone Intelligence**
+- **Theme Toggle**
 - **Extended Weather Metric Widgets**:
   - 🌡️ **Feels Like** Temperature
   - 💧 **Humidity** Percentage
