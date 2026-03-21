@@ -1,6 +1,20 @@
 const getWeatherBtn = document.getElementById('getWeatherBtn');
 const cityInput = document.getElementById('cityInput');
 
+const toggleBtn = document.getElementById("theme-toggle");
+
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+
+        if (document.body.classList.contains("light")) {
+            toggleBtn.textContent = "🌙 Dark";
+        } else {
+            toggleBtn.textContent = "☀️ Light";
+        }
+    });
+}
+
 if (getWeatherBtn && cityInput) {
     getWeatherBtn.addEventListener('click', () => {
         const city = cityInput.value.trim();

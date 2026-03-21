@@ -7,6 +7,21 @@
     --button-color: #c5cdcf;
 }
 
+.dark {
+    --container-color: #0f172a;
+    --box-color: #1e293b;
+    --button-color: #1e293b;
+    --text-color: #ffffff;
+}
+
+.light {
+    --container-color: #f1f5f9;
+    --box-color: #ffffff;
+    --button-color: #ffffff;
+    --text-color: black;
+    --background-color: #223f48;
+}
+
 
 * {
     margin: 0;
@@ -81,7 +96,8 @@ body {
 }
 
 .loc-time p{
-    color: var(--box-color);
+    color: var(--text-color);
+    opacity: 0.7;
     font-size: 1.2rem;
 }
 
@@ -130,7 +146,8 @@ body {
 .box-title {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--box-color);
+    color: var(--text-color);
+    opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -228,7 +245,7 @@ body {
     }
 
     .forecast-box {
-        flex: 1 1 calc(33% - 15px);
+        flex: 1;
     }
 }
 
@@ -243,6 +260,6 @@ body {
     }
 
     .forecast-box {
-        flex: 1 1 calc(50% - 15px);
+        flex: 1;
     }
 }
