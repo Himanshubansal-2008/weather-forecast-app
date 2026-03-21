@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌤 Weather App</title>
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="heading">
+            <h2>Welcome to</h2>
+            <h2> Weather<span class="highlight">App</span></h2>
+        </div>
+        <p class="subtitle">Enter your city to get real-time weather updates</p>
+        <div class="input-container">
+            <input type="text" id="cityInput" placeholder="e.g. London, New York" required autocomplete="off">
+        </div>
+        <button id="getWeatherBtn">Continue ➜</button>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>
