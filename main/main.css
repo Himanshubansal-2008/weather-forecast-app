@@ -199,3 +199,50 @@ body {
     font-weight: 800;
     color: var(--text-color);
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 30px 20px;
+        margin: 40px auto;
+    }
+
+    .header h2 {
+        font-size: 1.5rem;
+    }
+
+    .loc-temp {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 10px;
+        text-align: center;
+    }
+
+    .boxes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .forecast {
+        flex-wrap: wrap;
+    }
+
+    .forecast-box {
+        flex: 1 1 calc(33% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .boxes {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-box {
+        flex: 1 1 calc(50% - 15px);
+    }
+}
