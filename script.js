@@ -19,6 +19,18 @@ if (getWeatherBtn && cityInput) {
     });
 }
 
+function getWeatherEmoji(weatherMain) {
+    const w = weatherMain.toLowerCase();
+    if (w.includes('clear')) return '☀️';
+    if (w.includes('cloud')) return '☁️';
+    if (w.includes('rain')) return '🌧️';
+    if (w.includes('drizzle')) return '🌦️';
+    if (w.includes('thunderstorm')) return '⛈️';
+    if (w.includes('snow')) return '❄️';
+    if (w.includes('mist') || w.includes('fog') || w.includes('haze')) return '🌫️';
+    return '🌑';
+}
+
 const API_KEY = "f3188f829aa42f403b92b00b0b798e12";
 
 async function fetchWeather() {
@@ -74,6 +86,41 @@ async function fetchWeather() {
             else { aqiText = "Very Poor"; aqiColor = "#ef4444"; }
 
             aqiEl.innerHTML = `${aqiLevel} <span class="aqi-badge" style="background-color: ${aqiColor}; font-size: 0.8rem; position: relative; top: -3px; margin-left: 5px;">${aqiText}</span>`;
+            
+            const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${API_KEY}&units=metric`;
+            const forecastResponse = await fetch(forecastUrl);
+            const forecastData = await forecastResponse.json();
+
+            if (forecastData.cod === "200") {
+                const dailyForecasts = [];
+                const seenDates = new Set();
+                
+                for (let item of forecastData.list) {
+                    const dateStr = item.dt_txt.split(' ')[0];
+                    if (!seenDates.has(dateStr)) {
+                        seenDates.add(dateStr);
+                        dailyForecasts.push(item);
+                    }
+                    if (dailyForecasts.length === 5) break; 
+                }
+
+                for (let i = 0; i < 5; i++) {
+                    const forecast = dailyForecasts[i];
+                    if (!forecast) continue;
+                    
+                    const date = new Date(forecast.dt_txt);
+                    const dayOptions = { weekday: 'short' };
+                    let dayStr = (i === 0) ? "Today" : date.toLocaleDateString('en-US', dayOptions);
+                    
+                    const dayEl = document.getElementById(`f-day-${i}`);
+                    const iconEl = document.getElementById(`f-icon-${i}`);
+                    const tempEl = document.getElementById(`f-temp-${i}`);
+                    
+                    if (dayEl) dayEl.textContent = dayStr;
+                    if (iconEl) iconEl.textContent = getWeatherEmoji(forecast.weather[0].main);
+                    if (tempEl) tempEl.innerHTML = `${Math.round(forecast.main.temp)}&deg;C`;
+                }
+            }
 
         } else {
             alert("City not found: " + data.message);
