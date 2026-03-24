@@ -3,14 +3,23 @@ const cityInput = document.getElementById('cityInput');
 
 const toggleBtn = document.getElementById("theme-toggle");
 
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+    toggleBtn.textContent = "🌙";
+} else {
+    toggleBtn.textContent = "☀️";
+}
+
 if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
         document.body.classList.toggle("light");
 
         if (document.body.classList.contains("light")) {
-            toggleBtn.textContent = "🌙 Dark";
+            localStorage.setItem("theme", "light");
+            toggleBtn.textContent = "🌙";
         } else {
-            toggleBtn.textContent = "☀️ Light";
+            localStorage.setItem("theme", "dark");
+            toggleBtn.textContent = "☀️";
         }
     });
 }
