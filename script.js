@@ -5,9 +5,10 @@ const toggleBtn = document.getElementById("theme-toggle");
 
 if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light");
-    toggleBtn.textContent = "🌙";
-} else {
-    toggleBtn.textContent = "☀️";
+}
+
+if (toggleBtn) {
+    toggleBtn.textContent = localStorage.getItem("theme") === "light" ? "🌙" : "☀️";
 }
 
 if (toggleBtn) {

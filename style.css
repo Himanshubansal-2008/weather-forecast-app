@@ -1,9 +1,21 @@
 :root {
-    --background-color: #f0f4f8;
-    --container-color: #f6ffff;
+    --background-color: #223f48;
+    --container-color: #bdc3c6;
     --text-color: black;
     --highlight-color: #58a6ff;
     --button-text: white;
+}
+
+body.light {
+    --container-color: #f1f5f9;
+    --text-color: black;
+    --background-color: #2e5561;
+}
+
+body:not(.light) {
+    --container-color: #0f172a;
+    --text-color: #ffffff;
+    --background-color: #1a1a2e;
 }
 
 * {
@@ -15,27 +27,35 @@
 
 body {
     background-color: var(--background-color);
-    
-}
-
-.container {
-    background-color: var(--container-color);
-    border: none;
-    width: 90%;
-    max-width: 420px;
-    padding: 40px;
-    border-radius: 20px;
-    margin: 150px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    transition: background-color 0.3s ease;
 }
 
 .heading {
     text-align: center;
     margin-bottom: 15px;
+    position: relative;
+    width: 100%;
 }
+
+.home-toggle {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    background: transparent;
+    border: 1px solid var(--text-color);
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.home-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
 
 .heading h2 {
     font-size: 1.8rem;
